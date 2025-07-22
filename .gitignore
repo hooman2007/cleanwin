@@ -1,9 +1,7 @@
-```
-   __pycache__/
-   *.pyc
-   build/
-   dist/
-   *.spec
-   venv/
-   *.egg-info/
-   ```
+__pycache__/
+*.pyc
+build/
+dist/
+*.spec
+venv/
+*.egg-info/
