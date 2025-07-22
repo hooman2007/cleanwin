@@ -11,7 +11,7 @@ CleanWin is a powerful tool to effortlessly remove unwanted Windows apps, design
 - Requires admin privileges for app removal.
 
 ## Screenshots
-![Main Window (English)](screenshots/main_window_en.png)
+![Main Window (English)](screenshots/main_window.png)
 ![About Dialog](screenshots/about_dialog.png)
 
 ## Installation
