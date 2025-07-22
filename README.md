@@ -30,10 +30,13 @@
 
 ### 📦 Run from Source
 
-bash
+
 git clone https://github.com/hooman2007/cleanwin.git
+
 cd cleanwin
+
 pip install PyQt5==5.15.10
+
 python cleanwin.py
 
 📁 Download
