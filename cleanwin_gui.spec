@@ -2,7 +2,7 @@
 
 
 a = Analysis(
-    ['remove_apps_gui.py'],
+    ['cleanwin_gui.py'],
     pathex=[],
     binaries=[],
     datas=[('icons', 'icons')],
@@ -22,7 +22,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='remove_apps_gui',
+    name='cleanwin_gui',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,

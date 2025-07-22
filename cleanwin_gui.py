@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QFont, QCursor, QIcon, QPixmap
 
-# تنظیم مسیر آیکون‌ها
+# Set up icons directory
 if getattr(sys, 'frozen', False):
     BASE_DIR = sys._MEIPASS
 else:
@@ -17,7 +17,7 @@ else:
 ICONS_DIR = os.path.join(BASE_DIR, "icons")
 print(f"ICONS_DIR set to: {ICONS_DIR}")
 
-# استایل QSS
+# QSS stylesheet
 STYLESHEET = """
 QMainWindow, QDialog {
     background-color: #f8f9fa;
@@ -97,7 +97,7 @@ QMenuBar::item:selected {
 }
 """
 
-# لیست برنامه‌ها
+# List of programs to remove
 PROGRAMS = [
     {"name": "OneDrive", "desc_en": "Microsoft cloud storage", "desc_fa": "ذخیره‌سازی ابری مایکروسافت", "powershell_name": "OneDrive", "icon": "onedrive.png"},
     {"name": "Cortana", "desc_en": "Microsoft assistant", "desc_fa": "دستیار مایکروسافت", "powershell_name": "Cortana", "icon": "cortana.png"},
@@ -147,12 +147,14 @@ class LanguageDialog(QDialog):
         layout.setSpacing(8)
         layout.setContentsMargins(10, 10, 10, 10)
         
+        # Language selection label
         label = QLabel("Please select language / لطفاً زبان را انتخاب کنید:")
         label.setWordWrap(True)
         label.setFont(QFont("Segoe UI", 14))
         label.setAlignment(Qt.AlignCenter)
         layout.addWidget(label)
 
+        # Language buttons
         btn_layout = QHBoxLayout()
         btn_en = QPushButton("English")
         btn_fa = QPushButton("فارسی")
@@ -173,7 +175,7 @@ class AboutDialog(QDialog):
     def __init__(self, lang):
         super().__init__()
         self.lang = lang
-        self.setWindowTitle("About CleanWin / درباره کلین‌وین")
+        self.setWindowTitle("About CleanWin")
         self.setMinimumSize(550, 350)
         default_icon_path = os.path.join(ICONS_DIR, "default.png")
         print(f"Checking AboutDialog window icon: {default_icon_path}")
@@ -189,7 +191,7 @@ class AboutDialog(QDialog):
         layout.setSpacing(8)
         layout.setContentsMargins(15, 15, 15, 15)
 
-        # هدر
+        # Header
         header = QWidget()
         header.setFixedHeight(80)
         header.setStyleSheet("background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #4a90e2, stop:1 #17c4b5); border-radius: 8px;")
@@ -212,7 +214,7 @@ class AboutDialog(QDialog):
         header_layout.addWidget(title_label)
         header_layout.addStretch()
 
-        # توضیحات
+        # Description
         desc_layout = QHBoxLayout()
         desc_layout.setSpacing(5)
         desc_icon = QLabel()
@@ -243,7 +245,7 @@ class AboutDialog(QDialog):
         desc_layout.addWidget(desc)
         desc_layout.addStretch()
 
-        # برنامه‌نویس
+        # Developer
         dev_layout = QHBoxLayout()
         dev_layout.setSpacing(5)
         dev_icon = QLabel()
@@ -259,7 +261,7 @@ class AboutDialog(QDialog):
                 print(f"Warning: Used default icon for developer, {dev_icon_path} not found")
             else:
                 print(f"Error: AboutDialog developer icon and default icon not found: {dev_icon_path}, {default_icon_path}")
-        dev = QLabel("Programmer: Hooman Moezzi Azimi" if lang == "en" else "برنامه‌نویس: هومن معزی عظیمی")
+        dev = QLabel("Developer: Hooman Moezzi Azimi")
         dev.setFont(QFont("Segoe UI", 14))
         dev.setFixedWidth(400)
         if lang == "fa":
@@ -270,7 +272,7 @@ class AboutDialog(QDialog):
         dev_layout.addWidget(dev)
         dev_layout.addStretch()
 
-        # وب‌سایت
+        # Website
         website_layout = QHBoxLayout()
         website_layout.setSpacing(5)
         website_icon = QLabel()
@@ -286,7 +288,7 @@ class AboutDialog(QDialog):
                 print(f"Warning: Used default icon for website, {website_icon_path} not found")
             else:
                 print(f"Error: AboutDialog website icon and default icon not found: {website_icon_path}, {default_icon_path}")
-        website = QLabel('<a href="https://hoomanmoezzi.ir" target="_blank">https://hoomanmoezzi.ir</a>')
+        website = QLabel('<a href="https://hoomanmoezzi.ir">https://hoomanmoezzi.ir</a>')
         website.setOpenExternalLinks(True)
         website.setFont(QFont("Segoe UI", 14))
         website.setTextFormat(Qt.RichText)
@@ -299,7 +301,7 @@ class AboutDialog(QDialog):
         website_layout.addWidget(website)
         website_layout.addStretch()
 
-        # ایمیل
+        # Email
         email_layout = QHBoxLayout()
         email_layout.setSpacing(5)
         email_icon = QLabel()
@@ -335,6 +337,7 @@ class AboutDialog(QDialog):
         layout.addLayout(email_layout)
         layout.addStretch()
 
+        # Close button
         btn_box = QDialogButtonBox(QDialogButtonBox.Close)
         btn_box.rejected.connect(self.reject)
         btn_box.button(QDialogButtonBox.Close).setText("Close" if lang == "en" else "بستن")
@@ -345,7 +348,7 @@ class MainWindow(QMainWindow):
     def __init__(self, lang):
         super().__init__()
         self.lang = lang
-        self.setWindowTitle("CleanWin v1.0.1" if lang == "en" else "کلین‌وین نسخه ۱.۰.۱")
+        self.setWindowTitle("CleanWin v1.0.1")
         self.setMinimumSize(1200, 900)
         default_icon_path = os.path.join(ICONS_DIR, "default.png")
         print(f"Checking MainWindow icon: {default_icon_path}")
@@ -367,7 +370,7 @@ class MainWindow(QMainWindow):
         main_layout.setContentsMargins(15, 15, 15, 15)
         central.setLayout(main_layout)
 
-        # هدر
+        # Header
         header = QWidget()
         header.setFixedHeight(80)
         header.setStyleSheet("background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #4a90e2, stop:1 #17c4b5); border-radius: 8px;")
@@ -391,7 +394,7 @@ class MainWindow(QMainWindow):
         header_layout.addStretch()
         main_layout.addWidget(header)
 
-        # جستجو
+        # Search bar
         search_layout = QHBoxLayout()
         search_layout.setSpacing(8)
         self.search_input = QLineEdit()
@@ -407,6 +410,7 @@ class MainWindow(QMainWindow):
         search_layout.addWidget(select_all_btn)
         main_layout.addLayout(search_layout)
 
+        # Apps label
         label_text = "Select programs to remove:" if self.lang == "en" else "برنامه‌های مورد نظر برای حذف را انتخاب کنید:"
         label = QLabel(label_text)
         label.setFont(QFont("Segoe UI", 16, QFont.Bold))
@@ -414,7 +418,7 @@ class MainWindow(QMainWindow):
             label.setAlignment(Qt.AlignRight)
         main_layout.addWidget(label)
 
-        # منطقه اسکرول برای کارت‌ها
+        # Scroll area for app cards
         self.scroll = QScrollArea()
         self.scroll.setWidgetResizable(True)
         self.scroll_content = QWidget()
@@ -428,17 +432,20 @@ class MainWindow(QMainWindow):
         self.cards = []
         self.populate_cards()
 
+        # Remove button
         self.remove_btn = QPushButton("Remove Selected Apps" if self.lang == "en" else "حذف برنامه‌های انتخاب شده")
         self.remove_btn.setFont(QFont("Segoe UI", 14, QFont.Bold))
         self.remove_btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.remove_btn.clicked.connect(self.remove_apps)
         main_layout.addWidget(self.remove_btn)
 
+        # Progress bar
         self.progress_bar = QProgressBar()
         self.progress_bar.setValue(0)
         self.progress_bar.setVisible(False)
         main_layout.addWidget(self.progress_bar)
 
+        # Output console
         self.output = QTextEdit()
         self.output.setReadOnly(True)
         self.output.setFont(QFont("Segoe UI", 13))
@@ -447,7 +454,7 @@ class MainWindow(QMainWindow):
             self.output.setAlignment(Qt.AlignRight)
         main_layout.addWidget(self.output)
 
-        # منوی Help
+        # Help menu
         menubar = self.menuBar()
         help_menu = menubar.addMenu("Help" if self.lang == "en" else "راهنما")
         about_action = QAction("About" if self.lang == "en" else "درباره", self)
@@ -458,10 +465,12 @@ class MainWindow(QMainWindow):
         help_menu.addAction(guide_action)
 
     def populate_cards(self):
+        # Clear existing cards
         for widget in self.scroll_content.findChildren(QWidget):
             widget.deleteLater()
         self.cards.clear()
 
+        # Filter and populate app cards
         search_text = self.search_input.text().lower()
         for i, program in enumerate(PROGRAMS):
             if search_text and search_text not in program["name"].lower():
@@ -472,7 +481,7 @@ class MainWindow(QMainWindow):
             card_layout.setContentsMargins(8, 8, 8, 8)
             card_layout.setSpacing(8)
 
-            # آیکون برنامه
+            # Program icon
             icon_path = os.path.join(ICONS_DIR, program["icon"])
             print(f"Checking program icon: {icon_path}")
             icon = QLabel()
@@ -488,7 +497,7 @@ class MainWindow(QMainWindow):
                     print(f"Error: Program icon and default icon not found: {icon_path}, {default_icon_path}")
             card_layout.addWidget(icon)
 
-            # نام و توضیحات
+            # Program name and description
             text_layout = QVBoxLayout()
             name_label = QLabel(program["name"])
             name_label.setFont(QFont("Segoe UI", 14, QFont.Bold))
@@ -502,13 +511,13 @@ class MainWindow(QMainWindow):
             text_layout.addWidget(desc_label)
             card_layout.addLayout(text_layout)
 
-            # چک‌باکس
+            # Checkbox
             checkbox = QCheckBox()
             checkbox.setProperty("powershell_name", program["powershell_name"])
             checkbox.setCursor(QCursor(Qt.PointingHandCursor))
             card_layout.addWidget(checkbox, alignment=Qt.AlignRight)
 
-            # افزودن کارت به چیدمان جدولی (3 ستون)
+            # Add card to grid layout (3 columns)
             row = i // 3
             col = i % 3
             self.grid_layout.addWidget(card, row, col)
@@ -525,12 +534,14 @@ class MainWindow(QMainWindow):
             cb.setChecked(state)
 
     def remove_apps(self):
+        # Get selected apps
         selected = [cb.property("powershell_name") for cb in self.cards if cb.isChecked()]
         if not selected:
             msg = "Please select at least one app." if self.lang == "en" else "لطفاً حداقل یک برنامه را انتخاب کنید."
             QMessageBox.warning(self, "Warning" if self.lang == "en" else "هشدار", msg)
             return
 
+        # Check for admin privileges
         try:
             subprocess.check_call(['net', 'session'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         except subprocess.CalledProcessError:
@@ -542,9 +553,9 @@ class MainWindow(QMainWindow):
         self.progress_bar.setMaximum(len(selected))
         output = []
 
-        # حذف برنامه‌ها با PowerShell
+        # Remove apps using PowerShell
         for i, app in enumerate(selected):
-            # حذف پکیج نصب‌شده
+            # Remove installed package
             cmd = f'Get-AppxPackage -AllUsers *{app}* | Remove-AppxPackage -ErrorAction SilentlyContinue'
             try:
                 result = subprocess.run(
@@ -561,7 +572,7 @@ class MainWindow(QMainWindow):
                 output.append(f"<span style='color: #d32f2f'>{app}: Failed to remove - {error_msg}</span>" if self.lang == "en" else
                               f"<span style='color: #d32f2f'>{app}: خطا در حذف - {error_msg}</span>")
             
-            # حذف پکیج پروویژن‌شده
+            # Remove provisioned package
             cmd_provisioned = f'Get-AppxProvisionedPackage -Online | Where-Object {{$_.PackageName -like "*{app}*"}} | Remove-AppxProvisionedPackage -Online -ErrorAction SilentlyContinue'
             try:
                 result = subprocess.run(
