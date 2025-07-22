@@ -16,7 +16,7 @@
 ## 📸 Screenshots
 
 ### Main Window (English)
-![Main Window (English)](screenshots/main_window_en.png)
+![Main Window (English)](screenshots/main_window.png)
 
 ### About Dialog
 ![About Dialog](screenshots/about_dialog.png)
@@ -74,7 +74,9 @@ Open a pull request
 📄 License
 This project is licensed under the MIT License.
 👨‍💻 Author
-Hooman Moezzi Azimi📧 moezzi.hooman@gmail.com🌐 https://hoomanmoezzi.ir
+Hooman Moezzi Azimi
+📧 moezzi.hooman@gmail.com
+🌐 https://hoomanmoezzi.ir
 © 2025 Hooman Moezzi Azimi
 
 Enjoy a clean, fast, and bloat-free Windows experience with CleanWin!
